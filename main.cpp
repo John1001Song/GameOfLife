@@ -165,8 +165,8 @@ int main(int argc, char ** argv) {
     
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
+    glColor3i(1, 0, 0);
     
-    gluOrtho2D(0, 200, 0, 200);
     timeRedisplay(0);
     
     glutMainLoop();
