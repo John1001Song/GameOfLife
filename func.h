@@ -9,12 +9,17 @@
 #ifndef func_h
 #define func_h
 
+#include <stack>
 #include <stdio.h>
 #include <OpenGL/gl.h>
 #include <GLUT/glut.h>
 #include "cell.h"
 
 extern int window_size;
+
+int cellStack[100][100];
+
+
 
 class CellFunc{
 public:

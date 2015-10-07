@@ -25,10 +25,12 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/GLUT.h>
-#include "cell.h"
-#include "func.h"
+//#include "cell.h"
+//#include "func.h"
 
-int window_size = 300;
+int window_size = 100;
+
+int cellStateStack[100][100];
 
 void display(){
     glFlush();
@@ -45,8 +47,15 @@ void motion(int x, int y){
     
 };
 
-int count_neighbor(){
-    return 0;
+
+
+
+int count_neighbor(int x, int y){
+    int count;
+    count = cellStateStack[x-1][y-1] + cellStateStack[x][y-1] + cellStateStack[x+1][y-1] +
+            cellStateStack[x-1][y]                            + cellStateStack[x+1][y]   +
+            cellStateStack[x-1][y+1] + cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+    return count;
 }
 
 void idle(){

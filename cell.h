@@ -13,10 +13,11 @@
 
 class Cell {
 public:
-    int x, y, cellState;
-    
-    Cell(int x, int y, int cellState);
-    
+    //int x, y;
+    bool cellState;
+    Cell();
+    //Cell(int x, int y, bool cellState);
+    Cell(bool cellState);
 };
 
 #endif /* cell_h */
