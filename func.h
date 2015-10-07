@@ -18,12 +18,20 @@ extern int window_size;
 
 class CellFunc{
 public:
-    int count_nebor(Cell){
+    int count_nebor(Cell c){
+        int count;
+        
         return 0;
     }
     
-    void create_new_cell(){
-    
+    void light_the_cell(Cell c){
+        if (c.cellState == 1){
+            glBegin(GL_POINT);
+            glColor3i(1, 0, 0);
+            glVertex2i(c.x, c.y);
+            glEnd();
+            glFlush();
+        }
     }
     
     
