@@ -19,14 +19,10 @@
 
 */
 
-
-
 #include <iostream>
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/GLUT.h>
-//#include "cell.h"
-//#include "func.h"
 
 int window_size = 200;
 
@@ -43,8 +39,8 @@ void mouse(int btn, int state, int x, int y){
     
     if (btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         cellStateStack[x][y] = 1;
-        glBegin(GL_POINT);
-        glColor3i(1, 0, 0);
+        glBegin(GL_POINTS);
+        glColor3f(.0f, .0f, 1.0f);
         glVertex2i(x, y);
         glEnd();
         glFlush();
@@ -64,9 +60,6 @@ void motion(int x, int y){
     
     printf("%d, %d\n", x, y);
 };
-
-
-
 
 int count_neighbor(int x, int y){
     int count;
@@ -151,6 +144,8 @@ int main(int argc, char ** argv) {
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     glutIdleFunc(idle);
+    gluOrtho2D(0, window_size, 0, window_size);
+     timeRedisplay(0);
     
     glPointSize(3);
     
@@ -166,8 +161,6 @@ int main(int argc, char ** argv) {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3i(1, 0, 0);
-    
-    timeRedisplay(0);
     
     glutMainLoop();
     
