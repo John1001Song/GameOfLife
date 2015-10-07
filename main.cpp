@@ -38,12 +38,16 @@ void display(){
 
 void mouse(int btn, int state, int x, int y){
     if (btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        printf("");
+        cellStateStack[x][y] = 1;
+        glBegin(GL_POINT);
+        glVertex2i(x, y);
+        glEnd();
+        glFlush();
     }
 }
 
 void motion(int x, int y){
-    y = window_size - y;
+    //y = window_size - y;
     
 };
 
@@ -78,8 +82,19 @@ void idle(){
 }
 
 
-void light(){}
+void light(int x, int y){
+    glColor3i(1, 0, 0);
+    if (cellStateStack[x][y] == 1) {
+        glBegin(GL_POINT);
+        glVertex2i(x, y);
+        glEnd();
+        glFlush();
+    }
+}
 
+void live_or_dead(int x, int y){
+    
+}
 
 
 
