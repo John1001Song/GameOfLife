@@ -52,9 +52,24 @@ void motion(int x, int y){
 
 int count_neighbor(int x, int y){
     int count;
-    count = cellStateStack[x-1][y-1] + cellStateStack[x][y-1] + cellStateStack[x+1][y-1] +
-            cellStateStack[x-1][y]                            + cellStateStack[x+1][y]   +
-            cellStateStack[x-1][y+1] + cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+    if (x == 0) {
+        if (y == 0) {
+            count = cellStateStack[x+1][y] + cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+        } else {
+            count = cellStateStack[x][y-1] + cellStateStack[x+1][y-1] +
+                    cellStateStack[x+1][y] +
+                    cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+        }
+    } else {
+        if (y == 0) {
+            count = cellStateStack[x-1][y] + cellStateStack[x+1][y] +
+                    cellStateStack[x-1][y+1] + cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+        } else {
+            count = cellStateStack[x-1][y-1] + cellStateStack[x][y-1] + cellStateStack[x+1][y-1] +
+                    cellStateStack[x-1][y]                            + cellStateStack[x+1][y]   +
+                    cellStateStack[x-1][y+1] + cellStateStack[x][y+1] + cellStateStack[x+1][y+1];
+        }
+    }
     return count;
 }
 
@@ -63,7 +78,7 @@ void idle(){
 }
 
 
-void generateCELL(){}
+void light(){}
 
 
 
