@@ -93,7 +93,22 @@ void light(int x, int y){
 }
 
 void live_or_dead(int x, int y){
-    
+    int thisCount = count_neighbor(x, y);
+    if (thisCount < 2 || thisCount > 3) {
+        cellStateStack[x][y] = 0;
+        glBegin(GL_POINT);
+        glColor3i(1, 1, 1);
+        glVertex2i(x, y);
+        glEnd();
+        glFlush();
+    } else {
+        cellStateStack[x][y] = 1;
+        glBegin(GL_POINT);
+        glColor3i(1, 0, 0);
+        glVertex2i(x, y);
+        glEnd();
+        glFlush();
+    }
 }
 
 
