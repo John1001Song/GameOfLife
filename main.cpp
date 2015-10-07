@@ -79,7 +79,7 @@ void light(int x, int y){
     y = window_size - y;
     glColor3i(1, 0, 0);
     if (cellStateStack[x][y] == 1) {
-        glBegin(GL_POINT);
+        glBegin(GL_POINTS);
         glVertex2i(x, y);
         glEnd();
         glFlush();
@@ -90,14 +90,14 @@ void live_or_dead(int x, int y){
     int thisCount = count_neighbor(x, y);
     if (thisCount < 2 || thisCount > 3) {
         cellStateStack[x][y] = 0;
-        glBegin(GL_POINT);
+        glBegin(GL_POINTS);
         glColor3i(1, 1, 1);
         glVertex2i(x, y);
         glEnd();
         glFlush();
     } else {
         cellStateStack[x][y] = 1;
-        glBegin(GL_POINT);
+        glBegin(GL_POINTS);
         glColor3i(1, 0, 0);
         glVertex2i(x, y);
         glEnd();
