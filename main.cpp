@@ -33,8 +33,8 @@ int window_size = 200;
 int cellStateStack[200][200];
 
 void display(){
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(1, 1, 1, 1);
+    //glClear(GL_COLOR_BUFFER_BIT);
+    //glClearColor(1, 1, 1, 1);
     glFlush();
 }
 
@@ -97,6 +97,7 @@ void idle(){
 
 
 void light(int x, int y){
+    y = window_size - y;
     glColor3i(1, 0, 0);
     if (cellStateStack[x][y] == 1) {
         glBegin(GL_POINT);
@@ -123,14 +124,19 @@ void live_or_dead(int x, int y){
         glEnd();
         glFlush();
     }
+    printf("%d\n", thisCount);
 }
 
 void initCellStack(){
     for (int x=0; x < window_size; x++) {
         for (int y; y < window_size; y++) {
-            cellStateStack[x][y] = 0;
+            cellStateStack[x][y] = 1;
         }
     }
+}
+
+void timeRedisplay(int value){
+    glutTimerFunc(30, timeRedisplay, 0);
 }
 
 int main(int argc, char ** argv) {
@@ -139,6 +145,7 @@ int main(int argc, char ** argv) {
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(window_size, window_size);
     glutCreateWindow("Game of Life");
+    
     
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
@@ -156,7 +163,11 @@ int main(int argc, char ** argv) {
         }
     }
     
+    glClearColor(1, 1, 1, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
     gluOrtho2D(0, 200, 0, 200);
+    timeRedisplay(0);
     
     glutMainLoop();
     
