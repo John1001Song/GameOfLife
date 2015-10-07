@@ -37,6 +37,7 @@ void display(){
 }
 
 void mouse(int btn, int state, int x, int y){
+    
     if (btn == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         cellStateStack[x][y] = 1;
         glBegin(GL_POINT);
@@ -49,6 +50,12 @@ void mouse(int btn, int state, int x, int y){
 void motion(int x, int y){
     //y = window_size - y;
     
+    cellStateStack[x][y] = 1;
+    glBegin(GL_POINT);
+    glColor3i(1, 0, 0);
+    glVertex2i(x, y);
+    glEnd();
+    glFlush();
 };
 
 
@@ -127,8 +134,13 @@ int main(int argc, char ** argv) {
     
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
+    glutMotionFunc(motion);
+    glutIdleFunc(idle);
     
+    glPointSize(3);
+    gluOrtho2D(0, 100, 0, 100);
     
-    std::cout << "Hello, World!\n";
+    glutMainLoop();
+    
     return 0;
 }
