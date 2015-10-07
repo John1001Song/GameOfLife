@@ -48,19 +48,6 @@ void mouse(int btn, int state, int x, int y){
     }
 }
 
-void motion(int x, int y){
-    y = window_size - y;
-    
-    cellStateStack[x][y] = 1;
-    glBegin(GL_POINT);
-    glColor3i(1, 0, 0);
-    glVertex2i(x, y);
-    glEnd();
-    glFlush();
-    
-    printf("%d, %d\n", x, y);
-};
-
 int count_neighbor(int x, int y){
     int count;
     if (x == 0) {
@@ -88,12 +75,11 @@ void idle(){
     glutPostRedisplay();
 }
 
-
 void light(int x, int y){
     y = window_size - y;
     glColor3i(1, 0, 0);
     if (cellStateStack[x][y] == 1) {
-        glBegin(GL_POINTS);
+        glBegin(GL_POINT);
         glVertex2i(x, y);
         glEnd();
         glFlush();
@@ -104,14 +90,14 @@ void live_or_dead(int x, int y){
     int thisCount = count_neighbor(x, y);
     if (thisCount < 2 || thisCount > 3) {
         cellStateStack[x][y] = 0;
-        glBegin(GL_POINTS);
+        glBegin(GL_POINT);
         glColor3i(1, 1, 1);
         glVertex2i(x, y);
         glEnd();
         glFlush();
     } else {
         cellStateStack[x][y] = 1;
-        glBegin(GL_POINTS);
+        glBegin(GL_POINT);
         glColor3i(1, 0, 0);
         glVertex2i(x, y);
         glEnd();
@@ -139,17 +125,12 @@ int main(int argc, char ** argv) {
     glutInitWindowSize(window_size, window_size);
     glutCreateWindow("Game of Life");
     
-    
     glutDisplayFunc(display);
-    glutMouseFunc(mouse);
+//    glutMouseFunc(mouse);
     glutMotionFunc(motion);
-<<<<<<< Updated upstream
     glutIdleFunc(idle);
     gluOrtho2D(0, window_size, 0, window_size);
-     timeRedisplay(0);
-=======
-    //glutIdleFunc(idle);
->>>>>>> Stashed changes
+    timeRedisplay(0);
     
     glPointSize(3);
     
@@ -165,7 +146,6 @@ int main(int argc, char ** argv) {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3i(1, 0, 0);
-    gluOrtho2D(0, window_size, 0, window_size);
     
     glutMainLoop();
     
