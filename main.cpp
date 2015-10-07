@@ -143,9 +143,13 @@ int main(int argc, char ** argv) {
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
+<<<<<<< Updated upstream
     glutIdleFunc(idle);
     gluOrtho2D(0, window_size, 0, window_size);
      timeRedisplay(0);
+=======
+    //glutIdleFunc(idle);
+>>>>>>> Stashed changes
     
     glPointSize(3);
     
@@ -161,6 +165,7 @@ int main(int argc, char ** argv) {
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3i(1, 0, 0);
+    gluOrtho2D(0, window_size, 0, window_size);
     
     glutMainLoop();
     
