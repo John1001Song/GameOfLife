@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include "cell.h"
 
-cell::cell(int x, int y, int cellState){
+Cell::Cell(int x, int y, int cellState){
     this->x = x;
     this->y = y;
     this->cellState = cellState;
-}
+};
