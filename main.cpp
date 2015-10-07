@@ -75,6 +75,7 @@ void idle(){
     glutPostRedisplay();
 }
 
+
 void light(int x, int y){
     y = window_size - y;
     glColor3i(1, 0, 0);
@@ -125,9 +126,10 @@ int main(int argc, char ** argv) {
     glutInitWindowSize(window_size, window_size);
     glutCreateWindow("Game of Life");
     
+    
     glutDisplayFunc(display);
-//    glutMouseFunc(mouse);
-    glutMotionFunc(motion);
+    glutMouseFunc(mouse);
+//    glutMotionFunc(motion);
     glutIdleFunc(idle);
     gluOrtho2D(0, window_size, 0, window_size);
     timeRedisplay(0);
